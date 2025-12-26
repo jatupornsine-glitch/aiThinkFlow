@@ -1,38 +1,31 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <title>AI ห้องเรียนอัจฉริยะ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThinkFlow: คิดอย่างเป็นระบบ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f0f9ff;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+  }
+}
+</script>
 </head>
 <body>
-  <h2>ถาม AI ได้ที่นี่</h2>
-
-  <textarea id="prompt" rows="5" cols="50" placeholder="พิมพ์คำถามของนักเรียน"></textarea><br><br>
-  <button onclick="askAI()">ถาม AI</button>
-
-  <pre id="response"></pre>
-
-  <script>
-    async function askAI() {
-      const text = document.getElementById("prompt").value;
-      const responseBox = document.getElementById("response");
-      responseBox.textContent = "กำลังคิด...";
-
-      const response = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?AIzaSyBLgPOzdwbHka68zynuf9kJ862aWQeNe1s",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: text }] }]
-          })
-        }
-      );
-
-      const data = await response.json();
-      responseBox.textContent =
-        data.candidates?.[0]?.content?.parts?.[0]?.text || "ไม่มีคำตอบ";
-    }
-  </script>
+    <div id="root"></div>
 </body>
+</html>
 
